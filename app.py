@@ -44,6 +44,10 @@ def get_database():
 
 
 def reset_processor():
+    exercise = st.session_state.get(
+        "selected_exercise",
+        "Elbow Flexion",
+    )
     st.session_state.processor = RehabilitationProcessor()
 
 
@@ -86,7 +90,14 @@ def main():
 
         st.divider()
         st.header("🏃 Exercise")
-        exercise = st.selectbox("Exercise", ["Elbow Flexion"])
+        exercise = st.selectbox( "Exercise",[
+                    "Elbow Flexion",
+                    "Shoulder Flexion",
+                    "Shoulder Abduction",
+                    "Knee Flexion",
+                    ],)
+        st.session_state.selected_exercise = exercise
+            
 
         st.divider()
         st.caption("Deployment mode: " + db.mode_label)
